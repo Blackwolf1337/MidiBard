@@ -1,37 +1,18 @@
 ﻿#if DEBUG
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
-using Dalamud;
 using Dalamud.Interface;
 using Dalamud.Interface.Colors;
-using Dalamud.Interface.ImGuiFileDialog;
 using Dalamud.Logging;
 using Dalamud.Memory;
-using Dalamud.Utility;
 using FFXIVClientStructs.FFXIV.Client.System.Framework;
-using FFXIVClientStructs.FFXIV.Client.UI.Misc;
-using FFXIVClientStructs.FFXIV.Common.Configuration;
-using FFXIVClientStructs.FFXIV.Component.GUI;
 using ImGuiNET;
-using ImPlotNET;
-using Lumina.Excel.GeneratedSheets;
-using Melanchall.DryWetMidi.Common;
-using Melanchall.DryWetMidi.Core;
-using Melanchall.DryWetMidi.Devices;
-using Melanchall.DryWetMidi.Interaction;
-using MidiBard.Control;
+using Melanchall.DryWetMidi.Multimedia;
 using MidiBard.DalamudApi;
 using MidiBard.Managers;
-using MidiBard.Managers.Agents;
-using MidiBard.Managers.Ipc;
-using MidiBard.UI;
 using MidiBard.Util;
 using static ImGuiNET.ImGui;
 using static MidiBard.MidiBard;
@@ -221,9 +202,9 @@ namespace MidiBard
 						}
 
 						TextUnformatted(
-							$"InputDevices: {InputDevice.GetDevicesCount()}\n{string.Join("\n", InputDevice.GetAll().Select(i => $"[{i.Id}] {i.Name}"))}");
+							$"InputDevices: {InputDevice.GetDevicesCount()}\n{string.Join("\n", InputDevice.GetAll().Select(i => $"{i.Name}"))}");
 						TextUnformatted(
-							$"OutputDevices: {OutputDevice.GetDevicesCount()}\n{string.Join("\n", OutputDevice.GetAll().Select(i => $"[{i.Id}] {i.Name}({i.DeviceType})"))}");
+							$"OutputDevices: {OutputDevice.GetDevicesCount()}\n{string.Join("\n", OutputDevice.GetAll().Select(i => $"{i.Name}({i.GetType()})"))}");
 
 						TextUnformatted(
 							$"CurrentInputDevice: \n{InputDeviceManager.CurrentInputDevice} Listening: {InputDeviceManager.CurrentInputDevice?.IsListeningForEvents}");

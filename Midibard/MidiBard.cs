@@ -1,33 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using Dalamud.Interface.Internal.Notifications;
 using Dalamud.Logging;
 using Dalamud.Plugin;
-using Lumina.Data;
-using Lumina.Data.Files;
 using Lumina.Excel;
 using Lumina.Excel.GeneratedSheets;
 using Melanchall.DryWetMidi.Common;
-using Melanchall.DryWetMidi.Composing;
 using Melanchall.DryWetMidi.Core;
-using Melanchall.DryWetMidi.Devices;
+using Melanchall.DryWetMidi.Multimedia;
 using Melanchall.DryWetMidi.Interaction;
-using Melanchall.DryWetMidi.MusicTheory;
-using Melanchall.DryWetMidi.Standards;
 using MidiBard.Control;
 using MidiBard.Control.CharacterControl;
 using MidiBard.Control.MidiControl;
 using MidiBard.DalamudApi;
 using MidiBard.Managers;
 using MidiBard.Managers.Agents;
-using MidiBard.Managers.Ipc;
 using MidiBard.Util;
 using playlibnamespace;
 using static MidiBard.DalamudApi.api;
@@ -39,7 +31,7 @@ public class MidiBard : IDalamudPlugin
     public static Configuration config { get; private set; }
     internal static PluginUI Ui { get; set; }
 #if DEBUG
-		public static bool Debug = true;
+    public static bool Debug = true;
 #else
     public static bool Debug = false;
 #endif
@@ -64,7 +56,7 @@ public class MidiBard : IDalamudPlugin
     internal static string[] InstrumentStrings;
 
     internal static IDictionary<SevenBitNumber, uint> ProgramInstruments;
-		
+
     internal static byte CurrentInstrument => Marshal.ReadByte(Offsets.PerformanceStructPtr + 3 + Offsets.InstrumentOffset);
     internal static byte CurrentTone => Marshal.ReadByte(Offsets.PerformanceStructPtr + 3 + Offsets.InstrumentOffset + 1);
     internal static readonly byte[] guitarGroup = { 24, 25, 26, 27, 28 };
@@ -122,8 +114,8 @@ public class MidiBard : IDalamudPlugin
         _ = EnsembleManager.Instance;
 
 #if DEBUG
-			_ = NetworkManager.Instance;
-			_ = Testhooks.Instance;
+        _ = NetworkManager.Instance;
+        _ = Testhooks.Instance;
 #endif
 
         Task.Run(() => PlaylistManager.AddAsync(config.Playlist.ToArray(), true));
@@ -172,7 +164,7 @@ public class MidiBard : IDalamudPlugin
 
     [Command("/midibard")]
     [HelpMessage("Toggle MidiBard window")]
-    public void Command1(string command, string args) => OnCommand(command, args);
+    public async void Command1(string command, string args) => await OnCommand(command, args);
 
     [Command("/mbard")]
     [HelpMessage("toggle MidiBard window\n" +
@@ -180,7 +172,7 @@ public class MidiBard : IDalamudPlugin
                  "/mbard cancel → quit performance mode\n" +
                  "/mbard visual [on|off|toggle] → midi tracks visualization\n" +
                  "/mbard [play|pause|playpause|stop|next|prev|rewind (seconds)|fastforward (seconds)] → playback control")]
-    public void Command2(string command, string args) => OnCommand(command, args);
+    public async void Command2(string command, string args) => await OnCommand(command, args);
 
     async Task OnCommand(string command, string args)
     {
@@ -251,32 +243,32 @@ public class MidiBard : IDalamudPlugin
                     }
                     break;
                 case "rewind":
-                {
-                    double timeInSeconds = -5;
-                    try
                     {
-                        timeInSeconds = -double.Parse(argStrings[1]);
-                    }
-                    catch (Exception e)
-                    {
-                    }
+                        double timeInSeconds = -5;
+                        try
+                        {
+                            timeInSeconds = -double.Parse(argStrings[1]);
+                        }
+                        catch (Exception e)
+                        {
+                        }
 
-                    MidiPlayerControl.MoveTime(timeInSeconds);
-                }
+                        MidiPlayerControl.MoveTime(timeInSeconds);
+                    }
                     break;
                 case "fastforward":
-                {
-                    double timeInSeconds = 5;
-                    try
                     {
-                        timeInSeconds = double.Parse(argStrings[1]);
-                    }
-                    catch (Exception e)
-                    {
-                    }
+                        double timeInSeconds = 5;
+                        try
+                        {
+                            timeInSeconds = double.Parse(argStrings[1]);
+                        }
+                        catch (Exception e)
+                        {
+                        }
 
-                    MidiPlayerControl.MoveTime(timeInSeconds);
-                }
+                        MidiPlayerControl.MoveTime(timeInSeconds);
+                    }
                     break;
             }
         }
@@ -317,7 +309,7 @@ public class MidiBard : IDalamudPlugin
         try
         {
 #if DEBUG
-				Testhooks.Instance?.Dispose();
+            Testhooks.Instance?.Dispose();
 #endif
             GuitarTonePatch.Dispose();
             InputDeviceManager.ShouldScanMidiDeviceThread = false;
@@ -326,7 +318,7 @@ public class MidiBard : IDalamudPlugin
 
             EnsembleManager.Instance.Dispose();
 #if DEBUG
-				NetworkManager.Instance.Dispose();
+            NetworkManager.Instance.Dispose();
 #endif
             InputDeviceManager.DisposeCurrentInputDevice();
             try
