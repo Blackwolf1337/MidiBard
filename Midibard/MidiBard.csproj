@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0-windows</TargetFramework>
     <LangVersion>10.0</LangVersion>
-    <AssemblyVersion>1.9.3.1</AssemblyVersion>
+    <AssemblyVersion>2.0.0.1</AssemblyVersion>
 	  <ProduceReferenceAssembly>false</ProduceReferenceAssembly>
 	  <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 	  <Nullable>disable</Nullable>
@@ -75,8 +75,4 @@
     <Delete Files="@(DeleteAssemblies)" />
     <RemoveDir Directories="$(TargetDir)\ref\" />
   </Target>
-
-   <Target Name="PackagePlugin" AfterTargets="Build" Condition="'$(Configuration)' == 'Release'">
-        <DalamudPackager ProjectDir="$(ProjectDir)" OutputPath="$(OutputPath)" AssemblyName="$(AssemblyName)" Exclude="*.pdb" MakeZip="true" />
-    </Target>
 </Project>
