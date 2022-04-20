@@ -6,6 +6,6 @@
                 OutputPath="$(OutputPath)"
                 AssemblyName="$(AssemblyName)"
                 MakeZip="true"
-                Exclude="MidiBard.pdb;Melanchall_DryWetMidi_Native32.dll;Melanchall_DryWetMidi_Native64.dll;Melanchall_DryWetMidi_Native64.dylib" />
+                Exclude="MidiBard.pdb" />
     </Target>
 </Project>
