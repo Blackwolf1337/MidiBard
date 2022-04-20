@@ -3,6 +3,17 @@
 MidiBard是基于[卫月框架](https://bbs.tggfl.com/topic/32/dalamud-%E5%8D%AB%E6%9C%88%E6%A1%86%E6%9E%B6)的强大且易用的诗人midi演奏插件。目前版本兼容国服及国际服。
 
 # 主要特性
+<<<<<<< HEAD
+* 无需繁琐的键位配置，打开即用。
+* 与游戏内的合奏助手自动同步，实现一键高精度合奏。
+* 毫秒精度的音符回放和零按键延迟，最大程度还原乐曲细节。
+* 超出音域音符的自适应功能，节省适配midi文件的时间。
+* 内置播放列表并支持搜索，一次导入演奏所有你喜爱的乐曲。
+* 通过插件界面一键切换乐器，并可随乐曲播放自动切换为设定的乐器。
+* 多音轨选择，可以选择任意个音轨同时演奏或合奏，并可以在演奏中随时无缝切换音轨。
+* 支持外部midi输入，可使用midi键盘演奏或接入虚拟midi设备，实时试听乐谱制作效果。
+* 为每个midi音轨指定不同的电吉他音色并单人演奏！****国服需5.55更新电吉他音色后可用***
+=======
 * 无需繁琐的键位配置，打开即用
 * 使用合奏助手进行一键高精度合奏
 * 音轨可视化，直观查看乐谱效果
@@ -13,6 +24,7 @@ MidiBard是基于[卫月框架](https://bbs.tggfl.com/topic/32/dalamud-%E5%8D%AB
 * 可选择任意个音轨同时演奏或合奏，允许你在任何时候切换/静音/独奏/移调任意音轨
 * 良好的MIDI设备支持，自动扫描可用MIDI设备并连接，最佳的MIDI键盘演奏体验
 * 为每个音轨指定不同的电吉他音色并单人演奏！
+>>>>>>> release/6.0.0
 
 # 插件界面
 ![image](https://user-images.githubusercontent.com/33274390/152686485-cc882039-3395-4e88-8568-efaf2b838406.png)
@@ -24,7 +36,11 @@ MidiBard是基于[卫月框架](https://bbs.tggfl.com/topic/32/dalamud-%E5%8D%AB
 > MidiBard需要[卫月框架](https://bbs.tggfl.com/topic/32/dalamud-%E5%8D%AB%E6%9C%88%E6%A1%86%E6%9E%B6)，如未安装请参考[原帖](https://bbs.tggfl.com/topic/32/dalamud-%E5%8D%AB%E6%9C%88%E6%A1%86%E6%9E%B6)安装后继续。
 
 正确安装卫月框架并注入后在游戏聊天框中输入`/xlsettings`打开Dalamud 设置窗口，复制该源  
+<<<<<<< HEAD
+`https://raw.githubusercontent.com/akira0245/DalamudPlugins/cn/pluginmaster.json` 并将其添加到插件仓库  
+=======
 `https://raw.githubusercontent.com/akira0245/DalamudPlugins/api4/pluginmaster.json` 并将其添加到插件仓库  
+>>>>>>> release/6.0.0
 
 [![gw7vxx.png](https://z3.ax1x.com/2021/05/12/gw7vxx.png)](https://imgtu.com/i/gw7vxx)
 
