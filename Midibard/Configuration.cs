@@ -4,8 +4,10 @@ using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
 using System.Text.Json.Serialization;
+using Dalamud;
 using Dalamud.Configuration;
 using Dalamud.Logging;
+using Dalamud.Plugin;
 using ImGuiNET;
 
 namespace MidiBard;
